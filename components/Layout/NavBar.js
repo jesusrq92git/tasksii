@@ -12,6 +12,7 @@ const NavBar = props => {
   };
 
   const handleLogout = () => {
+    setLocation("/add-boards");
     props.isOnlineAction(false);
   };
 
