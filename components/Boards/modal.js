@@ -38,7 +38,7 @@ const ModalUpdate = props => {
             >
               <option value="low">Low</option>
               <option value="medium">Medium</option>
-              <option value="hight">Hight</option>
+              <option value="high">High</option>
             </Form.Control>
           </Form.Group>
 

@@ -47,6 +47,11 @@ const Boards = props => {
     setValues(tmp);
   };
 
+  const handleView = item => {
+    setShowModal(true);
+    setValues(item);
+  };
+
   const handleEdit = item => {
     setShowModal(true);
     setValues(item);
@@ -62,7 +67,8 @@ const Boards = props => {
           title: values.title,
           description: values.description,
           priority: values.priority,
-          category: values.category
+          category: values.category,
+          date: Date()
         };
       }
       return { ...el };
@@ -101,6 +107,7 @@ const Boards = props => {
             <Col className={"box-board setting-box-board"}>
               <Homework
                 items={filterItems("one")}
+                handleView={handleView}
                 handleEdit={handleEdit}
                 handleRemove={handleRemove}
               />
@@ -118,6 +125,7 @@ const Boards = props => {
             <Col className={"box-board setting-box-board"}>
               <Homework
                 items={filterItems("two")}
+                handleView={handleView}
                 handleEdit={handleEdit}
                 handleRemove={handleRemove}
               />
@@ -135,6 +143,7 @@ const Boards = props => {
             <Col className={"box-board setting-box-board"}>
               <Homework
                 items={filterItems("three")}
+                handleView={handleView}
                 handleEdit={handleEdit}
                 handleRemove={handleRemove}
               />

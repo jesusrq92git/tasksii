@@ -1,11 +1,13 @@
 import React from "react";
 import { Row, Col, Spinner } from "react-bootstrap";
+import ReactTimeAgo from 'react-time-ago';
 
 const styles = {
   time : {
-    fontSize: "11px",
+    fontSize: "12px",
     float: "right",
-    paddingTop: "5px"
+    paddingTop: "2px",
+    fontWeight: "bold"
   },
   priorityContainer: {
     position:"absolute", 
@@ -26,8 +28,10 @@ const Homework = props => {
     <React.Fragment>
       {props.items.map((item, index) => (
         <Col className="subbox-board" key={index}>
-          {item.title}
-          <span style={styles.time}>11 mins ago</span>
+          {
+            item.title.length > 16 ? `${item.title.slice(0,16)}...` : item.title
+          }
+          <ReactTimeAgo style={styles.time} date={item.date}/>
           <Row>
             <Col>
               <div className={"pos-btn-board"}>
@@ -35,6 +39,15 @@ const Homework = props => {
                   <Spinner animation="grow" size="sm" variant={item.priority==="low"?"primary":(item.priority==="medium"?"dark":"danger")} />
                   <p style={styles.priorityText}>{item.priority}</p>
                 </div>
+                <p
+                  className={"btn-board"}
+                  onClick={() => props.handleView(item)}
+                >
+                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                    <path fill-rule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                  </svg>
+                </p>
                 <p
                   className={"btn-board"}
                   onClick={() => props.handleEdit(item)}

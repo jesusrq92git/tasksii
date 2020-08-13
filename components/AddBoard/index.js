@@ -18,6 +18,7 @@ const AddBoard = props => {
       ...values,
       priority: nameInput === "priority" && valueInput !== "low" ? valueInput : "low",
       category: "one",
+      date: Date(),
       id: uuidv4()
     };
     tmp[nameInput] = valueInput;
@@ -46,7 +47,7 @@ const AddBoard = props => {
                 type="text"
                 ref={refInputTitle}
                 name="title"
-                maxLength="20"
+                maxLength="50"
                 onChange={e => handleChange(e.target)}
               />
             </Form.Group>
@@ -55,7 +56,7 @@ const AddBoard = props => {
               <Form.Label>Description</Form.Label>
               <Form.Control
                 as="textarea"
-                rows="3"
+                rows="5"
                 ref={refInputDescription}
                 name="description"
                 onChange={e => handleChange(e.target)}
@@ -72,7 +73,7 @@ const AddBoard = props => {
               >
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
-                <option value="hight">Hight</option>
+                <option value="high">High</option>
               </Form.Control>
             </Form.Group>
 
