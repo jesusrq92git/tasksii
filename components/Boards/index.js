@@ -61,6 +61,7 @@ const Boards = props => {
           ...el,
           title: values.title,
           description: values.description,
+          priority: values.priority,
           category: values.category
         };
       }

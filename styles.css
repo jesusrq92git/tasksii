@@ -93,7 +93,7 @@ body {
 	padding: 5px 10px;
 	margin: 20px 0px;
 	width: auto;
-	height: 70px;
+	height: 80px;
 }
 
 .setting-box-board {
@@ -107,7 +107,7 @@ body {
 
 .btn-board {
 	display: inline-block;
-	padding: 10px 4px;
+	padding: 20px 4px 0px 4px;
 }
 
 .btn-board:hover {

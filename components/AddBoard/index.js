@@ -8,6 +8,7 @@ const AddBoard = props => {
   const [values, setValues] = useState({});
   const refInputTitle = useRef(null);
   const refInputDescription = useRef(null);
+  const refInputPriority = useRef(null);
 
   const handleChange = target => {
     const nameInput = target.name;
@@ -15,6 +16,7 @@ const AddBoard = props => {
 
     let tmp = {
       ...values,
+      priority: nameInput === "priority" && valueInput !== "low" ? valueInput : "low",
       category: "one",
       id: uuidv4()
     };
@@ -28,6 +30,7 @@ const AddBoard = props => {
     setValues({});
     refInputTitle.current.value = "";
     refInputDescription.current.value = "";
+    refInputPriority.current.value = "low";
     props.ItemsAction(values, props.LoginReducer.lastUser);
   };
 
@@ -57,6 +60,20 @@ const AddBoard = props => {
                 name="description"
                 onChange={e => handleChange(e.target)}
               />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Priority</Form.Label>
+              <Form.Control
+                as="select"
+                ref={refInputPriority}
+                name="priority"
+                onChange={e => handleChange(e.target)}
+              >
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="hight">Hight</option>
+              </Form.Control>
             </Form.Group>
 
             <Form.Group>

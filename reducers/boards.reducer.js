@@ -11,6 +11,7 @@ export const BoardsReducers = (state = initialState, action) => {
           {
             title: action.payload.title,
             description: action.payload.description,
+            priority: action.payload.priority,
             category: action.payload.category,
             user: action.payload.lastUser,
             id: action.payload.id

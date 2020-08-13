@@ -29,6 +29,20 @@ const ModalUpdate = props => {
           </Form.Group>
 
           <Form.Group>
+            <Form.Label>Priority</Form.Label>
+            <Form.Control
+              as="select"
+              name="priority"
+              value={props.values.priority}
+              onChange={e => props.handleChange(e.target)}
+            >
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="hight">Hight</option>
+            </Form.Control>
+          </Form.Group>
+
+          <Form.Group>
             <Form.Label>Board</Form.Label>
             <Form.Control
               as="select"

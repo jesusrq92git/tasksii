@@ -1,5 +1,25 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Spinner } from "react-bootstrap";
+
+const styles = {
+  time : {
+    fontSize: "11px",
+    float: "right",
+    paddingTop: "5px"
+  },
+  priorityContainer: {
+    position:"absolute", 
+    left:"15px", 
+    top:"10px"
+  },
+  priorityText: {
+    display:"inline-block",
+    paddingTop:"10px",
+    paddingLeft:"5px",
+    fontSize: "13px",
+    textTransform: "capitalize"
+  }
+}
 
 const Homework = props => {
   return (
@@ -7,9 +27,14 @@ const Homework = props => {
       {props.items.map((item, index) => (
         <Col className="subbox-board" key={index}>
           {item.title}
+          <span style={styles.time}>11 mins ago</span>
           <Row>
             <Col>
               <div className={"pos-btn-board"}>
+                <div style={styles.priorityContainer}>
+                  <Spinner animation="grow" size="sm" variant={item.priority==="low"?"primary":(item.priority==="medium"?"dark":"danger")} />
+                  <p style={styles.priorityText}>{item.priority}</p>
+                </div>
                 <p
                   className={"btn-board"}
                   onClick={() => props.handleEdit(item)}
