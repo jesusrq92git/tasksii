@@ -9,6 +9,7 @@ const Boards = props => {
   const [showModal, setShowModal] = useState(false);
   const [itemToEdit, setItemToEdit] = useState({});
   const [values, setValues] = useState({});
+  const [view, setView] = useState(false);
 
   const items = props.BoardsReducers.items.filter((item, index) => {
     return item.user === props.LoginReducer.lastUser;
@@ -50,12 +51,14 @@ const Boards = props => {
   const handleView = item => {
     setShowModal(true);
     setValues(item);
+    setView(true);
   };
 
   const handleEdit = item => {
     setShowModal(true);
     setValues(item);
     setItemToEdit(item);
+    setView(false);
   };
 
   const handleEditSubmit = () => {
@@ -90,6 +93,7 @@ const Boards = props => {
     <Container>
       <ModalUpdate
         showModal={showModal}
+        view={view}
         values={values}
         setShowModal={setShowModal}
         handleChange={handleChange}
