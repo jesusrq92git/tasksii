@@ -3,8 +3,11 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { ItemsAction } from "../../actions/boards.action";
 import { v4 as uuidv4 } from 'uuid';
+import { useTranslation } from 'react-i18next';
 
 const AddBoard = props => {
+  const { t } = useTranslation();
+
   const [values, setValues] = useState({});
   const refInputTitle = useRef(null);
   const refInputDescription = useRef(null);
@@ -18,7 +21,7 @@ const AddBoard = props => {
       ...values,
       priority: nameInput === "priority" && valueInput !== "low" ? valueInput : "low",
       category: "one",
-      date: Date(),
+      date: new Date(),
       id: uuidv4()
     };
     tmp[nameInput] = valueInput;
@@ -42,7 +45,7 @@ const AddBoard = props => {
         <Col xs={12} sm={8}>
           <Form>
             <Form.Group>
-              <Form.Label>Title</Form.Label>
+              <Form.Label>{t('title')}</Form.Label>
               <Form.Control
                 type="text"
                 ref={refInputTitle}
@@ -53,7 +56,7 @@ const AddBoard = props => {
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Description</Form.Label>
+              <Form.Label>{t('description')}</Form.Label>
               <Form.Control
                 as="textarea"
                 rows="5"
@@ -64,21 +67,21 @@ const AddBoard = props => {
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Priority</Form.Label>
+              <Form.Label>{t('priority')}</Form.Label>
               <Form.Control
                 as="select"
                 ref={refInputPriority}
                 name="priority"
                 onChange={e => handleChange(e.target)}
               >
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
+                <option value="low">{t('priority-low')}</option>
+                <option value="medium">{t('priority-medium')}</option>
+                <option value="high">{t('priority-high')}</option>
               </Form.Control>
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>It will add in board *To do*</Form.Label>
+              <Form.Label>{t('legend-add-todo')}</Form.Label>
             </Form.Group>
 
             <Button
@@ -87,7 +90,7 @@ const AddBoard = props => {
               onClick={e => handleAdd(e)}
               disabled={!!values.title && !!values.description ? false : true}
             >
-              Submit
+              {t('submit')}
             </Button>
           </Form>
         </Col>

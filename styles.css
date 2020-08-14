@@ -2,6 +2,8 @@
 	font-size: 16px;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 300;
+  padding: 0px;
+  margin: 0px;
 }
 
 body {
@@ -114,6 +116,24 @@ body {
 	cursor: pointer;
 	transition: .3s;
 	color: red;
+}
+
+.btn-lang {
+  position: absolute;
+  left: 0px;
+  top: 320px;
+  background-color: #0d3c67;
+  color: white;
+  padding: 15px 15px 0px 15px;
+}
+
+.btn-lang p {
+  cursor: pointer;
+}
+
+.btn-lang p:hover{
+  opacity: .8;
+	transition: .3s;
 }
 
 @media only screen and (max-width: 600px) {

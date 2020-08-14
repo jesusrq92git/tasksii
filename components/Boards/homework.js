@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col, Spinner } from "react-bootstrap";
 import ReactTimeAgo from 'react-time-ago';
+import { useTranslation } from 'react-i18next';
 
 const styles = {
   time : {
@@ -24,6 +25,9 @@ const styles = {
 }
 
 const Homework = props => {
+
+  const { t } = useTranslation();
+
   return (
     <React.Fragment>
       {props.items.map((item, index) => (
@@ -31,20 +35,20 @@ const Homework = props => {
           {
             item.title.length > 16 ? `${item.title.slice(0,16)}...` : item.title
           }
-          <ReactTimeAgo style={styles.time} date={item.date}/>
+          <ReactTimeAgo style={styles.time} date={item.date} locale="es"/>
           <Row>
             <Col>
               <div className={"pos-btn-board"}>
 
                 <div style={styles.priorityContainer}>
                   <Spinner animation="grow" size="sm" variant={item.priority==="low"?"primary":(item.priority==="medium"?"dark":"danger")} />
-                  <p style={styles.priorityText}>{item.priority}</p>
+                  <p style={styles.priorityText}>{t("priority-"+item.priority)}</p>
                 </div>
 
                 <p className={"btn-board"} onClick={() => props.handleView(item)}>
-                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-eye-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                    <path fill-rule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                    <path fillRule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                   </svg>
                 </p>
 

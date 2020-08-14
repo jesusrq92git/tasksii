@@ -4,8 +4,11 @@ import Homework from "./homework";
 import ModalUpdate from "./modal";
 import { connect } from "react-redux";
 import { ItemsUpdateAction } from "../../actions/boards.action";
+import { useTranslation } from 'react-i18next';
 
 const Boards = props => {
+  const { t } = useTranslation();
+
   const [showModal, setShowModal] = useState(false);
   const [itemToEdit, setItemToEdit] = useState({});
   const [values, setValues] = useState({});
@@ -71,7 +74,7 @@ const Boards = props => {
           description: values.description,
           priority: values.priority,
           category: values.category,
-          date: Date()
+          date: new Date()
         };
       }
       return { ...el };
@@ -104,7 +107,7 @@ const Boards = props => {
         <Col sm={12} md className={"mt-5"}>
           <Row>
             <Col className={"box-board"} style={bgTitles.bgRed}>
-              <h5 className={"ml-2 mt-3 mb-3"}>To do</h5>
+              <h5 className={"ml-2 mt-3 mb-3"}>{t('to-do')}</h5>
             </Col>
           </Row>
           <Row>
@@ -122,7 +125,7 @@ const Boards = props => {
         <Col sm={12} md className={"mt-5"}>
           <Row>
             <Col className={"box-board"} style={bgTitles.bgBlue}>
-              <h5 className={"ml-2 mt-3 mb-3"}>For review</h5>
+              <h5 className={"ml-2 mt-3 mb-3"}>{t('for-review')}</h5>
             </Col>
           </Row>
           <Row>
@@ -140,7 +143,7 @@ const Boards = props => {
         <Col sm={12} md className={"mt-5"}>
           <Row>
             <Col className={"box-board"} style={bgTitles.bgOrange}>
-              <h5 className={"ml-2 mt-3 mb-3"}>Done</h5>
+              <h5 className={"ml-2 mt-3 mb-3"}>{t('done')}</h5>
             </Col>
           </Row>
           <Row>

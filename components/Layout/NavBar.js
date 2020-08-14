@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import { Navbar } from "react-bootstrap";
 import { connect } from "react-redux";
 import { isOnlineAction } from "../../actions/login.action";
+import { useTranslation } from 'react-i18next';
 
 const NavBar = props => {
+  const { t } = useTranslation();
+
   const [location, setLocation] = useState("/add-boards");
 
   const handleLocation = route => {
@@ -27,7 +30,7 @@ const NavBar = props => {
             }`}
             to="/add-boards"
           >
-            Add Board
+            {t('add-board')}
           </Link>
           <Link
             onClick={() => handleLocation("/boards")}
@@ -36,14 +39,14 @@ const NavBar = props => {
             }`}
             to="/boards"
           >
-            My Boards
+            {t('my-boards')}
           </Link>
           <Link
             className={"nav-link right"}
             to=""
             onClick={() => handleLogout()}
           >
-            Logout
+            {t('logout')}
           </Link>
         </Navbar>
       ) : (
