@@ -1,13 +1,16 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import { useTranslation } from 'react-i18next';
 
 const ModalUpdate = props => {
+  const { t } = useTranslation();
+
   return (
     <Modal className={'mt-5'} show={props.showModal} onHide={() => props.setShowModal(false)}>
       <Modal.Body>
         <Form>
           <Form.Group>
-            <Form.Label>Title</Form.Label>
+            <Form.Label>{t('title')}</Form.Label>
             <Form.Control
               type="text"
               name="title"
@@ -19,7 +22,7 @@ const ModalUpdate = props => {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Description</Form.Label>
+            <Form.Label>{t('description')}</Form.Label>
             <Form.Control
               as="textarea"
               rows="3"
@@ -34,30 +37,30 @@ const ModalUpdate = props => {
             props.view ? "" : (
               <React.Fragment>
                 <Form.Group>
-                  <Form.Label>Priority</Form.Label>
+                  <Form.Label>{t('priority')}</Form.Label>
                   <Form.Control
                     as="select"
                     name="priority"
                     value={props.values.priority}
                     onChange={e => props.handleChange(e.target)}
                   >
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
+                    <option value="low">{t('priority-low')}</option>
+                    <option value="medium">{t('priority-medium')}</option>
+                    <option value="high">{t('priority-high')}</option>
                   </Form.Control>
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>Board</Form.Label>
+                  <Form.Label>{t('board')}</Form.Label>
                   <Form.Control
                     as="select"
                     name="category"
                     value={props.values.category}
                     onChange={e => props.handleChange(e.target)}
                   >
-                    <option value="one">To do</option>
-                    <option value="two">For review</option>
-                    <option value="three">Done</option>
+                    <option value="one">{t('to-do')}</option>
+                    <option value="two">{t('for-review')}</option>
+                    <option value="three">{t('done')}</option>
                   </Form.Control>
                 </Form.Group>
               </React.Fragment>
@@ -68,12 +71,12 @@ const ModalUpdate = props => {
       </Modal.Body>
       <Modal.Footer>
         <Button className={"btn-grey"} onClick={() => props.setShowModal(false)}>
-          Close
+          {t('btn-close')}
         </Button>
         {
           props.view ? "" : (
             <Button className={"btn-blue"} onClick={() => props.handleEditSubmit()}>
-              Save Changes
+              {t('btn-save')}
             </Button>
           )
         }

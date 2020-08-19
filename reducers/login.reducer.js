@@ -1,7 +1,8 @@
 const initialState = {
   users: [],
   lastUser: "",
-  online: false
+  online: false,
+  language: "en"
 };
 
 export const LoginReducer = (state = initialState, action) => {
@@ -27,6 +28,11 @@ export const LoginReducer = (state = initialState, action) => {
         ...state,
         lastUser: action.payload
       };
+    case "SET_LANGUAGE":
+      return {
+        ...state,
+        language: action.payload
+      }
     default:
       return state;
   }

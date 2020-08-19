@@ -18,3 +18,10 @@ export const lastUserAction = user => {
     payload: user
   };
 };
+
+export const languageAction = lang => {
+  return {
+    type: "SET_LANGUAGE",
+    payload: lang
+  }
+}

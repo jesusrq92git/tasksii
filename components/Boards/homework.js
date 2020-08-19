@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col, Spinner } from "react-bootstrap";
 import ReactTimeAgo from 'react-time-ago';
 import { useTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
 
 const styles = {
   time : {
@@ -27,6 +28,7 @@ const styles = {
 const Homework = props => {
 
   const { t } = useTranslation();
+  const { LoginReducer } = props;
 
   return (
     <React.Fragment>
@@ -35,7 +37,7 @@ const Homework = props => {
           {
             item.title.length > 16 ? `${item.title.slice(0,16)}...` : item.title
           }
-          <ReactTimeAgo style={styles.time} date={item.date} locale="es"/>
+          <ReactTimeAgo style={styles.time} date={item.date} locale={LoginReducer.language}/>
           <Row>
             <Col>
               <div className={"pos-btn-board"}>
@@ -75,4 +77,12 @@ const Homework = props => {
     </React.Fragment>
   );
 };
-export default Homework;
+
+const mapStateToProps = (state) => ({
+  LoginReducer: state.LoginReducer
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Homework);

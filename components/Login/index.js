@@ -7,8 +7,11 @@ import {
 } from "../../actions/login.action";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { useTranslation } from 'react-i18next';
 
 const Register = props => {
+  const { t } = useTranslation();
+
   const [values, setValues] = useState({});
   const [register, setRegister] = useState(false);
   const [errorMsg, setErrorMsg] = useState({
@@ -32,7 +35,7 @@ const Register = props => {
     if (values.password !== values.repassword) {
       setErrorMsg({
         show: true,
-        text: "Error! Las contraseñas no coinciden..."
+        text: t('error-login-1')
       });
     } else {
       setErrorMsg({
@@ -60,7 +63,7 @@ const Register = props => {
     } else {
       setErrorMsg({
         show: true,
-        text: "Error! Usuario o contraseña inválidos, intenta de nuevo..."
+        text: t('error-login-2')
       });
     }
   };
@@ -81,7 +84,7 @@ const Register = props => {
           <div className={"login-box"}>
             <Row>
               <Col>
-                <h2>{register ? "Register" : "Login"}</h2>
+                <h2>{register ? t('register'): t('login')}</h2>
               </Col>
             </Row>
             <Row className={"mt-5"}>
@@ -91,7 +94,7 @@ const Register = props => {
                     <Form.Control
                       type="email"
                       name="email"
-                      placeholder="Email address"
+                      placeholder={t('email-address')}
                       onChange={e => handleChange(e.target)}
                       required={true}
                     />
@@ -101,7 +104,7 @@ const Register = props => {
                     <Form.Control
                       type="password"
                       name="password"
-                      placeholder="Password"
+                      placeholder={t('password')}
                       onChange={e => handleChange(e.target)}
                       required={true}
                     />
@@ -112,7 +115,7 @@ const Register = props => {
                       <Form.Control
                         type="password"
                         name="repassword"
-                        placeholder="Confirm password"
+                        placeholder={t('confirm-pwd')}
                         onChange={e => handleChange(e.target)}
                         required={true}
                       />
@@ -125,7 +128,7 @@ const Register = props => {
                     className={"btn-login-register"}
                     onClick={() => setRegister(!register)}
                   >
-                    {register ? "-> Login" : "-> Register"}
+                    {register ? `-> ${t('login')}`  : `-> ${t('register')}` }
                   </p>
                   <Button
                     className={"btn-blue"}
@@ -146,7 +149,7 @@ const Register = props => {
                         : true
                     }
                   >
-                    Submit
+                    {t('submit')}
                   </Button>
                 </Form>
               </Col>
