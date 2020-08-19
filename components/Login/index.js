@@ -68,9 +68,11 @@ const Register = props => {
     }
   };
 
+  const { LoginReducer } = props;
+
   return (
     <Container>
-      {props.LoginReducer.online ? (
+      { LoginReducer.online ? (
         <Redirect to="/add-boards" />
       ) : (
         <div className={"center"}>

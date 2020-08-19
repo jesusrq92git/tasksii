@@ -27,15 +27,18 @@ const Boards = props => {
   const bgTitles = {
     bgRed: {
       backgroundColor: "#f9443c",
-      color: "white"
+      color: "white",
+      borderTopRightRadius: '30px'
     },
     bgBlue: {
       backgroundColor: "#e5ba29",
-      color: "white"
+      color: "white",
+      borderTopRightRadius: '30px'
     },
     bgOrange: {
       backgroundColor: "#5fa02f",
-      color: "white"
+      color: "white",
+      borderTopRightRadius: '30px'
     }
   };
 

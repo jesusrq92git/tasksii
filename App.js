@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "./components/Layout/NavBar";
 import Login from "./components/Login/index";
 import AddBoard from "./components/AddBoard/index";
@@ -11,6 +11,10 @@ import { connect } from 'react-redux';
 
 function App(props) {
   const { i18n, t } = useTranslation();
+
+  useEffect(()=>{
+    i18n.changeLanguage(props.LoginReducer.language);
+  },[]);
 
   const handleLanguage = (lang) => {
     i18n.changeLanguage(lang);

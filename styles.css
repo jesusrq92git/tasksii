@@ -67,6 +67,8 @@ body {
 	margin-top: 200px;
 	padding: 30px;
 	color: white;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
 }
 
 .btn-login-register {
@@ -120,11 +122,23 @@ body {
 
 .btn-lang {
   position: absolute;
-  left: 0px;
+  left: -75px;
   top: 320px;
-  background-color: #0d3c67;
+  background-color: #00000082;
+  border-top: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
   color: white;
-  padding: 15px 15px 0px 15px;
+  padding: 15px 20px 0px 15px;
+  z-index: 1;
+  transition: 1s;
+}
+
+.btn-lang:hover{
+  left: 0px;
+  transition: .4s;
 }
 
 .btn-lang p {

@@ -5,8 +5,10 @@ import { useTranslation } from 'react-i18next';
 const ModalUpdate = props => {
   const { t } = useTranslation();
 
+  const { showModal, setShowModal, values, handleChange, view, handleEditSubmit } = props;
+
   return (
-    <Modal className={'mt-5'} show={props.showModal} onHide={() => props.setShowModal(false)}>
+    <Modal className={'mt-5'} show={showModal} onHide={() => setShowModal(false)}>
       <Modal.Body>
         <Form>
           <Form.Group>
@@ -15,9 +17,9 @@ const ModalUpdate = props => {
               type="text"
               name="title"
               maxLength="20"
-              value={props.values.title}
-              onChange={e => props.handleChange(e.target)}
-              disabled={props.view ? true : false}
+              value={values.title}
+              onChange={e => handleChange(e.target)}
+              disabled={view ? true : false}
             />
           </Form.Group>
 
@@ -27,22 +29,22 @@ const ModalUpdate = props => {
               as="textarea"
               rows="3"
               name="description"
-              value={props.values.description}
-              onChange={e => props.handleChange(e.target)}
-              disabled={props.view ? true : false}
+              value={values.description}
+              onChange={e => handleChange(e.target)}
+              disabled={view ? true : false}
             />
           </Form.Group>
 
           {
-            props.view ? "" : (
+            view ? "" : (
               <React.Fragment>
                 <Form.Group>
                   <Form.Label>{t('priority')}</Form.Label>
                   <Form.Control
                     as="select"
                     name="priority"
-                    value={props.values.priority}
-                    onChange={e => props.handleChange(e.target)}
+                    value={values.priority}
+                    onChange={e => handleChange(e.target)}
                   >
                     <option value="low">{t('priority-low')}</option>
                     <option value="medium">{t('priority-medium')}</option>
@@ -55,8 +57,8 @@ const ModalUpdate = props => {
                   <Form.Control
                     as="select"
                     name="category"
-                    value={props.values.category}
-                    onChange={e => props.handleChange(e.target)}
+                    value={values.category}
+                    onChange={e => handleChange(e.target)}
                   >
                     <option value="one">{t('to-do')}</option>
                     <option value="two">{t('for-review')}</option>
@@ -70,12 +72,12 @@ const ModalUpdate = props => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button className={"btn-grey"} onClick={() => props.setShowModal(false)}>
+        <Button className={"btn-grey"} onClick={() => setShowModal(false)}>
           {t('btn-close')}
         </Button>
         {
-          props.view ? "" : (
-            <Button className={"btn-blue"} onClick={() => props.handleEditSubmit()}>
+          view ? "" : (
+            <Button className={"btn-blue"} onClick={() => handleEditSubmit()}>
               {t('btn-save')}
             </Button>
           )

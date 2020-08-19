@@ -19,9 +19,11 @@ const NavBar = props => {
     props.isOnlineAction(false);
   };
 
+  const { LoginReducer } = props;
+
   return (
     <React.Fragment>
-      {props.LoginReducer.online ? (
+      {LoginReducer.online ? (
         <Navbar className={"navbar nav-style"}>
           <Link
             onClick={() => handleLocation("/add-boards")}
