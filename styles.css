@@ -165,7 +165,6 @@ body {
 		margin-top: 60px;
 	}
   .setting-box-board {
-    height: 20vh;
-    overflow: scroll;
+    height: 50px;
   }
 }
