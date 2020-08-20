@@ -7,9 +7,12 @@ import {
 } from "../../actions/login.action";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+import SimpleCrypto from "simple-crypto-js";
 import { useTranslation } from 'react-i18next';
 
 const Register = props => {
+  const secretKey = "some-unique-key";
+  const simpleCrypto = new SimpleCrypto(secretKey);
   const { t } = useTranslation();
 
   const [values, setValues] = useState({});
@@ -42,16 +45,20 @@ const Register = props => {
         show: false,
         text: ""
       });
-      props.LoginAction(values);
+      const valuesEncrypt = {
+        ...values,
+        password: simpleCrypto.encrypt(values.password).toString()
+      }
+      props.LoginAction(valuesEncrypt);
       props.isOnlineAction(true);
-      props.lastUserAction(values.email);
+      props.lastUserAction(valuesEncrypt.email);
     }
   };
 
   const handleLogin = e => {
     e.preventDefault();
     const res = props.LoginReducer.users.find(item => {
-      return item.email === values.email && item.password === values.password;
+      return item.email === values.email && simpleCrypto.decrypt(item.password).toString() === values.password;
     });
     if (!!res) {
       setErrorMsg({
@@ -100,6 +107,9 @@ const Register = props => {
                       onChange={e => handleChange(e.target)}
                       required={true}
                     />
+                    <Form.Text className={'f-text'}>
+                      {t('legend-email')}
+                    </Form.Text>
                   </Form.Group>
 
                   <Form.Group className={"mt-4"}>
@@ -110,6 +120,9 @@ const Register = props => {
                       onChange={e => handleChange(e.target)}
                       required={true}
                     />
+                    <Form.Text className={'f-text'}>
+                      {t('legend-pass')}
+                    </Form.Text>
                   </Form.Group>
 
                   {register ? (
@@ -121,6 +134,9 @@ const Register = props => {
                         onChange={e => handleChange(e.target)}
                         required={true}
                       />
+                      <Form.Text className={'f-text'}>
+                        {t('legend-pass')}
+                      </Form.Text>
                     </Form.Group>
                   ) : (
                     ""
@@ -142,10 +158,14 @@ const Register = props => {
                       !!values.email &&
                       !!values.password &&
                       !!values.repassword &&
+                      values.password.length > 9 &&
+                      values.repassword.length > 9 &&
                       register
                         ? false
                         : !!values.email &&
                           !!values.password &&
+                          values.email.length > 9 &&
+                          values.password.length > 9 &&
                           register === false
                         ? false
                         : true
