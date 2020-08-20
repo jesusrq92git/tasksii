@@ -164,4 +164,8 @@ body {
 		width: 90%;
 		margin-top: 60px;
 	}
+  .setting-box-board {
+    height: 20vh;
+    overflow: scroll;
+  }
 }
