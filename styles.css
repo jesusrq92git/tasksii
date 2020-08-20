@@ -111,7 +111,9 @@ body {
 
 .setting-box-board {
 	height: 80vh;
-	overflow: scroll;
+  overflow-x: hidden;
+	overflow-y: scroll;
+  border-bottom: 5px solid #0d3c67;
 }
 
 .pos-btn-board {
@@ -161,7 +163,7 @@ body {
 
 @media only screen and (max-width: 767px) {
   .setting-box-board {
-    height: 145px;
+    height: 150px;
   }
 }
 
