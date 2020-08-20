@@ -160,11 +160,11 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
+  .setting-box-board {
+    height: 25vh;
+  }
 	.login-box {
 		width: 90%;
 		margin-top: 60px;
 	}
-  .setting-box-board {
-    height: 50px;
-  }
 }
