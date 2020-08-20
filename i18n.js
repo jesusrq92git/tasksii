@@ -15,7 +15,7 @@ const resources = {
       "legend-pass": "Minimum 10 characters",
       "error-login-1": "Error! Passwords don't match...",
       "error-login-2": "Error! Invalid username or password, try again ...",
-      "add-board": "Addd board",
+      "add-board": "Addxx board",
       "my-boards": "My boards",
       "logout": "Logout",
       "title": "Title",
