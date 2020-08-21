@@ -41,8 +41,8 @@ const AddBoard = props => {
   return (
     <Container>
       <Row className={"mt-5"}>
-        <Col xs={12} sm={2}></Col>
-        <Col xs={12} sm={8}>
+        <Col xs={1} sm={2}></Col>
+        <Col xs={10} sm={8}>
           <Form>
             <Form.Group>
               <Form.Label>{t('title')}</Form.Label>

@@ -2,46 +2,59 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Form } from "react-bootstrap";
 import { connect } from "react-redux";
-import { isOnlineAction } from "../../actions/login.action";
+import { isOnlineAction, locationRoute } from "../../actions/login.action";
 import { useTranslation } from 'react-i18next';
 
 const NavBar = props => {
+
+  const [expanded, setExpanded] = useState(false);
   const { t } = useTranslation();
 
-  const [location, setLocation] = useState("/add-boards");
-
-  const handleLocation = route => {
-    setLocation(route);
-  };
-
   const handleLogout = () => {
-    setLocation("/add-boards");
+    locationRoute("/add-boards");
+    setExpanded(!expanded)
     props.isOnlineAction(false);
   };
 
-  const { LoginReducer } = props;
+  const wrapper = (route) => {
+    locationRoute(route);
+    setExpanded(!expanded)
+  }
+
+  const { LoginReducer, locationRoute } = props;
 
   return (
     <React.Fragment>
       {LoginReducer.online ? (
-        <Navbar expand="lg" className={"nav-style"}>
-          <Navbar.Brand href={"/"}>TaskSii</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar expanded={window.innerWidth <= "991" ? expanded : ""} expand="lg" className={"nav-style"}>
+          <Navbar.Brand>
+            TaskSii
+          </Navbar.Brand>
+          <Navbar.Toggle
+            onClick={
+              () => setExpanded(!expanded)
+            }
+            aria-controls="basic-navbar-nav" 
+          />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Link
-                onClick={() => handleLocation("/add-boards")}
+                onClick={
+                  ()=>wrapper("/add-boards")
+                }
                 className={`nav-link ${
-                  location === "/add-boards" ? "active-link" : ""
+                  LoginReducer.location === "/add-boards" ? "active-link" : ""
                 }`}
                 to="/add-boards"
               >
                 {t('add-board')}
               </Link>
               <Link 
-                onClick={() => handleLocation("/boards")}
+                onClick={
+                  ()=>wrapper("/boards")
+                }
                 className={`nav-link ${
-                  location === "/boards" ? "active-link" : ""
+                  LoginReducer.location === "/boards" ? "active-link" : ""
                 }`}
                 to="/boards"
               >
@@ -72,7 +85,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = () => {
   return {
-    isOnlineAction
+    isOnlineAction, locationRoute
   };
 };
 

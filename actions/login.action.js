@@ -25,3 +25,10 @@ export const languageAction = lang => {
     payload: lang
   }
 }
+
+export const locationRoute = route => {
+  return {
+    type: "SET_LOCATION",
+    payload: route
+  }
+} 

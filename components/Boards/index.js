@@ -107,7 +107,8 @@ const Boards = props => {
       />
 
       <Row>
-        <Col sm={12} md className={"mt-5"}>
+        <Col xs={1} className='d-sm-none'></Col>
+        <Col xs={10} sm={12} md className={"mt-5"}>
           <Row>
             <Col className={"box-board"} style={bgTitles.bgRed}>
               <h5 className={"ml-2 mt-3 mb-3"}>{t('to-do')}</h5>
@@ -124,8 +125,10 @@ const Boards = props => {
             </Col>
           </Row>
         </Col>
-
-        <Col sm={12} md className={"mt-5"}>
+        <Col xs={1} className='d-sm-none'></Col>
+        
+        <Col xs={1} className='d-sm-none'></Col>
+        <Col xs={10} sm={12} md className={"mt-5"}>
           <Row>
             <Col className={"box-board"} style={bgTitles.bgBlue}>
               <h5 className={"ml-2 mt-3 mb-3"}>{t('for-review')}</h5>
@@ -142,8 +145,10 @@ const Boards = props => {
             </Col>
           </Row>
         </Col>
+        <Col xs={1} className='d-sm-none'></Col>
 
-        <Col sm={12} md className={"mt-5 mb-5"}>
+        <Col xs={1} className='d-sm-none'></Col>
+        <Col xs={10} sm={12} md className={"mt-5 mb-5"}>
           <Row>
             <Col className={"box-board"} style={bgTitles.bgOrange}>
               <h5 className={"ml-2 mt-3 mb-3"}>{t('done')}</h5>
@@ -160,6 +165,7 @@ const Boards = props => {
             </Col>
           </Row>
         </Col>
+        <Col xs={1} className='d-sm-none'></Col>
       </Row>
     </Container>
   );

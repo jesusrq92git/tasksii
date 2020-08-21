@@ -49,7 +49,7 @@ function App(props) {
 }
 
 const Error404 = () => {
-  return <p>Error</p>;
+  return <p>Error 404 No encontrado</p>;
 };
 
 const mapStateToProps = (state) => ({
