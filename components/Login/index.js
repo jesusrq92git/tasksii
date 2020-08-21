@@ -35,30 +35,42 @@ const Register = props => {
 
   const handleRegister = e => {
     e.preventDefault();
+
+    const res = props.LoginReducer.users.find(item => {
+      return item.user === values.user
+    });
+
     if (values.password !== values.repassword) {
       setErrorMsg({
         show: true,
         text: t('error-login-1')
       });
     } else {
-      setErrorMsg({
-        show: false,
-        text: ""
-      });
-      const valuesEncrypt = {
-        ...values,
-        password: simpleCrypto.encrypt(values.password).toString()
+      if(!!res){
+        setErrorMsg({
+          show: true,
+          text: t('error-login-3')
+        });
+      } else {
+        setErrorMsg({
+          show: false,
+          text: ""
+        });
+        const valuesEncrypt = {
+          ...values,
+          password: simpleCrypto.encrypt(values.password).toString()
+        }
+        props.LoginAction(valuesEncrypt);
+        props.isOnlineAction(true);
+        props.lastUserAction(valuesEncrypt.user);
       }
-      props.LoginAction(valuesEncrypt);
-      props.isOnlineAction(true);
-      props.lastUserAction(valuesEncrypt.email);
     }
   };
 
   const handleLogin = e => {
     e.preventDefault();
     const res = props.LoginReducer.users.find(item => {
-      return item.email === values.email && simpleCrypto.decrypt(item.password).toString() === values.password;
+      return item.user === values.user && simpleCrypto.decrypt(item.password).toString() === values.password;
     });
     if (!!res) {
       setErrorMsg({
@@ -66,7 +78,7 @@ const Register = props => {
         text: ""
       });
       props.isOnlineAction(true);
-      props.lastUserAction(values.email);
+      props.lastUserAction(values.user);
     } else {
       setErrorMsg({
         show: true,
@@ -101,14 +113,14 @@ const Register = props => {
                 <Form>
                   <Form.Group>
                     <Form.Control
-                      type="email"
-                      name="email"
-                      placeholder={t('email-address')}
+                      type="text"
+                      name="user"
+                      placeholder={t('user')}
                       onChange={e => handleChange(e.target)}
                       required={true}
                     />
                     <Form.Text className={'f-text'}>
-                      {t('legend-email')}
+                      {t('legend-user')}
                     </Form.Text>
                   </Form.Group>
 
@@ -155,16 +167,15 @@ const Register = props => {
                       register ? e => handleRegister(e) : e => handleLogin(e)
                     }
                     disabled={
-                      !!values.email &&
+                      !!values.user &&
                       !!values.password &&
                       !!values.repassword &&
                       values.password.length > 9 &&
                       values.repassword.length > 9 &&
                       register
                         ? false
-                        : !!values.email &&
+                        : !!values.user &&
                           !!values.password &&
-                          values.email.length > 9 &&
                           values.password.length > 9 &&
                           register === false
                         ? false

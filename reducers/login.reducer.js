@@ -14,7 +14,7 @@ export const LoginReducer = (state = initialState, action) => {
         users: [
           ...state.users,
           {
-            email: action.payload.email,
+            user: action.payload.user,
             password: action.payload.password
           }
         ]
