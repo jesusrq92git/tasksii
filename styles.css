@@ -45,20 +45,34 @@ body {
 }
 
 .active-link {
-	border-bottom: 2px solid white;
+  border-top: 1px solid white;
+  border-bottom: 3px solid white;
 }
 
 .nav-style {
 	background-color: #0d3c67;
 }
 
-.nav-style .nav-link {
-	color: white;
+.navbar-brand, .nav-link {
+  color: white !important;
+  text-align: center;
 }
 
-.nav-style .nav-link:hover {
+.nav-link{
+  margin: 0px 10px;
+}
+
+.nav-link:hover {
 	opacity: .8;
 	transition: .3s;
+}
+
+.navbar-toggler{
+  background-color: white !important;
+}
+
+.navbar-toggler:focus{
+  outline: none;
 }
 
 .login-box {
@@ -132,9 +146,9 @@ body {
 }
 
 .btn-lang {
-  position: absolute;
+  position: fixed;
   left: -75px;
-  top: 320px;
+  top: 40vh;
   background-color: #00000082;
   border-top: 1px solid white;
   border-right: 1px solid white;
@@ -161,9 +175,15 @@ body {
 	transition: .3s;
 }
 
+@media only screen and (max-width: 991px) {
+  .navbar-collapse{
+    margin-top: 20px;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .setting-box-board {
-    height: 150px;
+    height: 155px;
   }
 }
 

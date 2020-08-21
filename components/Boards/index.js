@@ -143,7 +143,7 @@ const Boards = props => {
           </Row>
         </Col>
 
-        <Col sm={12} md className={"mt-5"}>
+        <Col sm={12} md className={"mt-5 mb-5"}>
           <Row>
             <Col className={"box-board"} style={bgTitles.bgOrange}>
               <h5 className={"ml-2 mt-3 mb-3"}>{t('done')}</h5>
