@@ -17,16 +17,14 @@ const AddBoard = props => {
     const nameInput = target.name;
     const valueInput = target.value;
 
-    let tmp = {
+    setValues({
       ...values,
+      [nameInput]: valueInput,
       priority: nameInput === "priority" && valueInput !== "low" ? valueInput : "low",
       category: "one",
       date: new Date(),
       id: uuidv4()
-    };
-    tmp[nameInput] = valueInput;
-
-    setValues(tmp);
+    });
   };
 
   const handleAdd = e => {

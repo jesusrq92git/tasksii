@@ -25,12 +25,11 @@ const Register = props => {
   const handleChange = target => {
     const nameInput = target.name;
     const valueInput = target.value;
-    let tmp = {
-      ...values
-    };
-    tmp[nameInput] = valueInput;
 
-    setValues(tmp);
+    setValues({
+      ...values,
+      [nameInput]: valueInput
+    })
   };
 
   const handleRegister = e => {
