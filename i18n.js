@@ -31,7 +31,7 @@ const resources = {
       "btn-save": "Save",
       "submit": "Submit",
       "to-do": "To do",
-      "for-review": "For review",
+      "for-review": "Doing",
       "done": "Done"
     }
   },
@@ -64,7 +64,7 @@ const resources = {
       "btn-save": "Guardar",
       "submit": "Enviar",
       "to-do": "Por hacer",
-      "for-review": "Para revisión",
+      "for-review": "Realizando",
       "done": "Terminado"
     }
   }
