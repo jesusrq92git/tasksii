@@ -60,7 +60,7 @@ const mapDispatchToProps = () => {
   return {
     languageAction
   }
-}
+};
 
 export default connect(
   mapStateToProps,
