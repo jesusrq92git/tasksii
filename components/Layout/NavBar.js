@@ -75,7 +75,7 @@ const NavBar = props => {
               <Link
                 className={"nav-link"}
                 to=""
-                onClick={() => handleLogout()}
+                onClick={handleLogout}
               >
                  {t('logout')}
               </Link>
